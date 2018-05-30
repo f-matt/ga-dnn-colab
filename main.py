@@ -68,8 +68,6 @@ def train_net():
     x_test = np.array(x_test)
     y_test = np.array(y_test)
 
-    print 'DBG: ', x_train.shape
-
     if K.image_data_format() == 'channels_first':
         x_train = x_train.reshape(x_train.shape[0], IMG_CHANNELS, IMG_HEIGHT, IMG_WIDTH)
         x_test = x_test.reshape(x_test.shape[0], IMG_CHANNELS, IMG_HEIGHT, IMG_WIDTH)
