@@ -13,8 +13,6 @@ import cv2
 
 from copy import deepcopy
 
-from samba.dcerpc.xattr import EA
-
 TRAIN_FILE = "data/ar-tracking/train.csv"
 TEST_FILE = "data/ar-tracking/test.csv"
 
