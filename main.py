@@ -121,73 +121,28 @@ def train_net():
     # Exporta o modelo
     # model.save('model.h5')
 
-    print(history.history.keys())
+    #print(history.history.keys())
     #    print(history.history['acc'])
 
     #   plt.plot(history.history['acc'])
-    plt.plot(history.history['loss'])
+    #plt.plot(history.history['loss'])
 
-    plt.show()
+    #plt.show()
 
     test_loss = 0
 
     for i in range(TEST_PATTERNS):
-        pred = model.predict(x=x_test[i], batch_size=1, verbose=0)
+        test_pattern = x_test[i].reshape(1, x_test[i].shape[0], x_test[i].shape[1], x_test[i].shape[2])
 
-        loss = 0.5 * np.sum(np.sqr(pred - y_test[i]))
+        pred = model.predict(x=test_pattern, batch_size=1, verbose=0)
+
+        loss = 0.5 * np.sum((pred - y_test[i]) ** 2)
 
         test_loss += loss
 
     test_loss /= TEST_PATTERNS
 
     print "Test loss: ", test_loss
-
-    # Avalia o modelo
-
-
-#  scores = model.evaluate(X, Y)
-#  print("\n%s: %.2f%%" % (model.metrics_names[1], scores[1]*100))
-
-
-#
-# Teste da rede com padrões desconhecidos
-#
-def test_net():
-    fid = open('test.csv', 'r')
-    lines = fid.readlines()
-    fid.close()
-
-    dataset = []
-
-    for line in lines:
-        dataset.append(list(map(float, line.rstrip('\n').split(','))))
-
-    dataset = np.array(dataset)
-
-    n_test_patterns = 100
-
-    # Divide o dataset em entradas (X) e saídas (Y)
-    X = dataset[0:n_test_patterns, 0:41]
-    Y = dataset[0:n_test_patterns, 41]
-
-    model = load_model('model.h5')
-
-    pred = model.predict(x=X, batch_size=1, verbose=0)
-
-    n_correct = 0
-    n_wrong = 0
-
-    for i in range(len(pred)):
-        y_pred = int(round(pred[i][0]))
-
-        if y_pred == Y[i]:
-            n_correct += 1
-        else:
-            n_wrong += 1
-
-    acc = float(n_correct) / (n_correct + n_wrong)
-
-    print "Acc: ", acc * 100, "%"
 
 
 if __name__ == "__main__":
