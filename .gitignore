@@ -1,3 +1,7 @@
 .idea/workspace.xml
 /main.o
 /main
+/corners-data-wrapper.o
+/corners-regressor.o
+/descriptors.o
+/solution.o
