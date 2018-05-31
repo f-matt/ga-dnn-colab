@@ -204,7 +204,8 @@ public:
 		solver_param.set_random_seed(4096);
 		solver_param.set_snapshot_prefix("snapshots/net");
 
-		solver_param.set_solver_mode(SolverParameter_SolverMode_CPU);
+		// solver_param.set_solver_mode(SolverParameter_SolverMode_CPU);
+		solver_param.set_solver_mode(SolverParameter_SolverMode_GPU);
 
 		// Set iter to 0 to disable test during training
 		solver_param.add_test_iter(0);
