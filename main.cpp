@@ -49,6 +49,11 @@ int main(int argc, char *argv[]) {
 		return EXIT_FAILURE;
 	}
 
+	srand(2);
+
+	google::InitGoogleLogging("GA-DL");
+	google::SetCommandLineOption("GLOG_minloglevel", "1");
+
 	create_solution(argv[1]);
 
 	return EXIT_SUCCESS;
