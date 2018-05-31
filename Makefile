@@ -1,5 +1,5 @@
-LIBS = -pthread -lm -lboost_system -lboost_filesystem -lboost_date_time -lcaffe -lglog -lgflags -lprotobuf `pkg-config --libs opencv`
-OBJS = main.o corners-data-wrapper.o corners-regressor.o solution.o descriptors.o
+LIBS = -pthread -lm -lboost_system -lboost_filesystem -lboost_date_time -lcaffe -lglog -lgflags -lprotobuf `pkg-config --libs opencv libcurl jsoncpp`
+OBJS = main.o corners-data-wrapper.o corners-regressor.o solution.o descriptors.o rest-manager.o
 all: main
 
 main: $(OBJS)
@@ -19,6 +19,9 @@ solution.o: solution.cpp solution.h
 
 descriptors.o: descriptors.cpp descriptors.h
 	g++ -c -o descriptors.o descriptors.cpp 
+
+rest-manager.o: rest-manager.cpp rest-manager.h
+	g++ -c -o rest-manager.o rest-manager.cpp
 
 clean:
 	rm -f *.o main

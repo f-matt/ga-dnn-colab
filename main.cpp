@@ -1,5 +1,6 @@
 #include "corners-data-wrapper.h"
 #include "solution.h"
+#include "rest-manager.h"
 
 #include <iostream>
 #include <boost/shared_ptr.hpp>
@@ -13,6 +14,28 @@ void create_solution(const string& descriptor) {
 	Solution solution(data_wrapper, descriptor);
 
 	solution.evaluate();
+
+	RestManager rest_manager;
+
+	FitnessRecord record;
+	record.descriptor = solution.get_descriptor().to_string();
+	record.fitness = solution.get_fitness();
+	record.n_weights = solution.get_weights();
+
+	stringstream ss;
+	ss << fixed << setprecision(2);
+
+	vector<float> output_vector = solution.get_output_vector();
+
+	for (unsigned int i = 0; i < output_vector.size() - 1; ++i) {
+		ss << output_vector[i] << ";";
+	}
+
+	ss << *(output_vector.rbegin());
+
+	record.training_input = ss.str();
+
+	rest_manager.insert(record);
 
 	cout << "Fitness: " << solution.get_fitness() << endl;
 	cout << "Weights: " << solution.get_weights() << endl;
