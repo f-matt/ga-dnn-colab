@@ -21,7 +21,12 @@ void create_solution(const string& descriptor) {
 
 int main(int argc, char *argv[]) {
 
-	create_solution("CR;16;3;1;2");
+	if (argc < 2) {
+		cout << "Usage: main <descriptor>" << endl;
+		return EXIT_FAILURE;
+	}
+
+	create_solution(argv[1]);
 
 	return EXIT_SUCCESS;
 

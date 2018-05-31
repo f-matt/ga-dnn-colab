@@ -1,7 +1,7 @@
 #ifndef CONFIG_H_
 #define CONFIG_H_
 
-// #define CPU_ONLY
+//#define CPU_ONLY
 #define USE_OPENCV
 
 #include <opencv2/core/core.hpp>
