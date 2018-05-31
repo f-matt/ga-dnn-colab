@@ -20,4 +20,5 @@ solution.o: solution.cpp solution.h
 descriptors.o: descriptors.cpp descriptors.h
 	g++ -c -o descriptors.o descriptors.cpp 
 
-
+clean:
+	rm -f *.o main
